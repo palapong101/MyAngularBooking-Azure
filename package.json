@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "lint": "ng lint",
     "serve:ssr:my-angular-project": "node dist/my-angular-project/server/server.mjs"
   },
   "private": true,
