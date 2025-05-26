@@ -1,52 +1,30 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
   "projects": {
     "my-angular-project": {
       "projectType": "application",
-      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-angular-project",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "assets": ["src/assets", "src/favicon.ico"],
+            "styles": ["src/styles.css"],
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                }
+                { "type": "initial", "maximumWarning": "2mb", "maximumError": "5mb" },
+                { "type": "anyComponentStyle", "maximumWarning": "500kb", "maximumError": "1mb" }
               ],
               "outputHashing": "all"
             },
@@ -58,46 +36,37 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "proxyConfig": "proxy.conf.json"
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
           },
           "configurations": {
-            "production": {
-              "buildTarget": "my-angular-project:build:production"
-            },
-            "development": {
-              "buildTarget": "my-angular-project:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+            "production": {},
+            "development": {}
           }
-        }
+        },
+        "serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "buildTarget": "my-angular-project:build"
+  },
+  "configurations": {
+    "production": {
+      "buildTarget": "my-angular-project:build:production"
+    },
+    "development": {
+      "buildTarget": "my-angular-project:build:development"
+    }
+  },
+  "defaultConfiguration": "development"
+}
       }
     }
   },
   "cli": {
-    "analytics": "ff0b9438-62f0-4fae-a35e-6f19eb6aef4d"
+    "analytics": "8a534480-f681-4a6c-8f73-c464b0650ad7"
   }
 }
